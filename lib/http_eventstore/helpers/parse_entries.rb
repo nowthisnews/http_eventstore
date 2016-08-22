@@ -16,8 +16,8 @@ module HttpEventstore
         id = entry['eventNumber']
         event_id = entry['eventId']
         type = entry['eventType']
-        return nil unless entry['data']
-        data = JSON.parse(entry['data'])
+        return nil if entry['eventType'] == '$metadata'
+        data = JSON.parse(entry['data'] || '{}')
         stream_name = entry['streamId']
         position = entry['positionEventNumber']
         created_time = entry['updated'] ? Time.parse(entry['updated']) : nil

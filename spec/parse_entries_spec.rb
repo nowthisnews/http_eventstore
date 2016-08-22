@@ -20,7 +20,7 @@ module HttpEventstore
 
       specify 'tolerates deleted stream events' do
         events = service.call(entries_including_deleted_stream_events)
-        expect(events.length).to eq 1
+        expect(events.length).to eq 2
         expect(events[0].type).to eq "entryCreated"
         expect(events[0].data).to eq({"a" => "1"})
         expect(events[0].event_id).to eq "fbf4a1a1-b4a3-4dfe-a01f-6668634e16e4"
