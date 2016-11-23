@@ -1,10 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'http_eventstore/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'http_eventstore'
-  spec.version       = '0.1.3'
+  spec.version       = HttpEventstore::VERSION
   spec.authors       = ['Tomasz Rybczyński']
   spec.email         = ['tomek.rybka@gmail.com', 'dev@arkency.com']
 
