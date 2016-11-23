@@ -3,8 +3,6 @@ module HttpEventstore
     class Connection
       APP_JSON = 'application/json'.freeze
 
-      attr_reader :http_adapter
-
       def initialize(endpoint, http_adapter = nil)
         @http_adapter = http_adapter
         @endpoint = endpoint
@@ -26,7 +24,7 @@ module HttpEventstore
       end
 
       private
-      attr_reader :endpoint
+      attr_reader :endpoint, :http_adapter
     end
   end
 end
