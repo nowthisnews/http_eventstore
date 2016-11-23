@@ -16,9 +16,3 @@ require 'http_eventstore/actions/read_all_stream_events_forward'
 require 'http_eventstore/actions/read_stream_events_backward'
 require 'http_eventstore/actions/read_stream_events_forward'
 require 'http_eventstore/actions/read_stream_new_events_forward'
-
-module HttpEventstore
-  class << self
-    attr_accessor :http_adapter
-  end
-end

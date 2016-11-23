@@ -1,10 +1,12 @@
 module HttpEventstore
   module Api
     class Client
+      attr_reader :http_adapter
 
-      def initialize(endpoint, port, page_size)
+      def initialize(endpoint, port, page_size, http_adapter = nil)
         @endpoint = Endpoint.new(endpoint, port)
         @page_size = page_size
+        @http_adapter = http_adapter
       end
       attr_reader :endpoint, :page_size
 
@@ -64,7 +66,7 @@ module HttpEventstore
       end
 
       def connection
-        @connection ||= Api::Connection.new(endpoint).call
+        @connection ||= Api::Connection.new(endpoint, http_adapter).call
       end
     end
   end

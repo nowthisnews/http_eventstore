@@ -1,6 +1,6 @@
 module HttpEventstore
   class Connection
-    attr_accessor :endpoint, :port, :page_size
+    attr_accessor :endpoint, :port, :page_size, :http_adapter
 
     def initialize
       setup_defaults
@@ -47,7 +47,7 @@ module HttpEventstore
     private
 
     def client
-      @client ||= Api::Client.new(endpoint, port, page_size)
+      @client ||= Api::Client.new(endpoint, port, page_size, http_adapter)
     end
 
     def setup_defaults
