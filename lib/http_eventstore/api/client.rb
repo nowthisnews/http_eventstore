@@ -1,12 +1,12 @@
 module HttpEventstore
   module Api
     class Client
-
-      def initialize(endpoint, port, page_size)
+      def initialize(endpoint, port, page_size, http_adapter = nil)
         @endpoint = Endpoint.new(endpoint, port)
         @page_size = page_size
+        @http_adapter = http_adapter
       end
-      attr_reader :endpoint, :page_size
+      attr_reader :endpoint, :page_size, :http_adapter
 
       def append_to_stream(stream_name, event, expected_version = nil)
         headers = {"ES-EventType" => event.type, "ES-EventId" => event.event_id, "ES-ExpectedVersion" => "#{expected_version}"}.reject { |key, val| val.empty? }
@@ -64,7 +64,7 @@ module HttpEventstore
       end
 
       def connection
-        @connection ||= Api::Connection.new(endpoint).call
+        @connection ||= Api::Connection.new(endpoint, http_adapter).call
       end
     end
   end

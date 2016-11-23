@@ -15,8 +15,9 @@ module HttpEventstore
         config.endpoint   = ENDPOINT
         config.port       = PORT
         config.page_size  = PAGE_SIZE
+        config.http_adapter = :net_http
       end
-      allow(Api::Client).to receive(:new).with(ENDPOINT, PORT, PAGE_SIZE).and_return(client)
+      allow(Api::Client).to receive(:new).with(ENDPOINT, PORT, PAGE_SIZE, :net_http).and_return(client)
       client.reset!
     end
 
@@ -25,6 +26,10 @@ module HttpEventstore
       expect(default_connection.endpoint).to eq ENDPOINT
       expect(default_connection.port).to eq PORT
       expect(default_connection.page_size).to eq PAGE_SIZE
+    end
+
+    specify 'has net_http in http adapter connection' do
+      expect(@connection.http_adapter).to eql :net_http
     end
 
     specify 'can create new event in stream from hash' do

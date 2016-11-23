@@ -3,7 +3,8 @@ module HttpEventstore
     class Connection
       APP_JSON = 'application/json'.freeze
 
-      def initialize(endpoint)
+      def initialize(endpoint, http_adapter = nil)
+        @http_adapter = http_adapter
         @endpoint = endpoint
       end
 
@@ -15,7 +16,7 @@ module HttpEventstore
                 content_type: APP_JSON
             }
         ) do |builder|
-          builder.adapter Faraday.default_adapter
+          builder.adapter(http_adapter || Faraday.default_adapter)
           builder.response :json, content_type: APP_JSON
           builder.response :mashify
           builder.use ErrorsHandler
@@ -23,7 +24,7 @@ module HttpEventstore
       end
 
       private
-      attr_reader :endpoint
+      attr_reader :endpoint, :http_adapter
     end
   end
 end

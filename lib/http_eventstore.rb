@@ -1,3 +1,4 @@
+require 'http_eventstore/version'
 require 'http_eventstore/api/client'
 require 'http_eventstore/api/connection'
 require 'http_eventstore/api/errors_handler'
