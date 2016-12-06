@@ -8,7 +8,7 @@ module HttpEventstore
 
       def call(stream_name, start, count, pool)
         response = get_stream_batch(stream_name, start, count, pool)
-        return_events(response['entries'])
+        return_events(response['entries']&.reverse)
       rescue ClientError => e
         raise StreamAlreadyDeleted if e.code == 410
         raise StreamNotFound if e.code == 404

@@ -121,9 +121,9 @@ module HttpEventstore
     specify 'can load events forward' do
       create_stream
       events = @connection.read_events_forward(stream_name, 1, 3)
-      expect(events[0][:type]).to eq 'EventType4'
+      expect(events[0][:type]).to eq 'EventType2'
       expect(events[1][:type]).to eq 'EventType3'
-      expect(events[2][:type]).to eq 'EventType2'
+      expect(events[2][:type]).to eq 'EventType4'
     end
 
     specify 'can load events backward' do
