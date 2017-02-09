@@ -1,8 +1,6 @@
 project_name: http_eventstore
 change:
-  version: major
+  version: minor
   desc: |
-    Make forward readers consistent. Make sure to ReadStreamEventsForward return events in
-    correct order: from oldest to newest.
+    Added temporal fix to HttpEventstore::Helpers::ParseEntries so as an identified [malformed event](http://eventstore.service.consul:2113/web/index.html#/streams/PitchingAggregate-9bc0086b-3a3c-4684-b705-3b064af64cba/3) can be parsed.
 
-    It's a breaking change for other gems.
