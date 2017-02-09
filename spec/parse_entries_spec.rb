@@ -29,6 +29,17 @@ module HttpEventstore
         expect(events[0].stream_name).to eq('entries')
       end
 
+      specify 'it recovers from JsonParse::Error if possible' do
+        events = service.call([malformed_entry])
+        expect(events.length).to eq 1
+        expect(events[0].type).to eq "entryCreated"
+        expect(events[0].data).to eq("a"=>"1(", "b"=>"11(")
+        expect(events[0].event_id).to eq "fbf4a1a1-b4a3-4dfe-a01f-6668634e16e4"
+        expect(events[0].id).to eq 47
+        expect(events[0].position).to eq 51
+        expect(events[0].stream_name).to eq('entries')
+      end
+
       private
 
       def entries
@@ -48,6 +59,18 @@ module HttpEventstore
           "eventId" => "fbf4a1a1-b4a3-4dfe-a01f-6668634e16e4",
           "eventType" => "entryCreated",
           "data" => "{\n  \"a\": \"1\"\n}",
+          "eventNumber" => 47,
+          "positionEventNumber" => 51,
+          "streamId" => 'entries',
+          "updated" => "2015-06-30T02:02:01Z"
+        }
+      end
+
+      def malformed_entry
+        {
+          "eventId" => "fbf4a1a1-b4a3-4dfe-a01f-6668634e16e4",
+          "eventType" => "entryCreated",
+          "data" => "{\n  \"a\": \"1(\"\n(, \"b\": \"11(\"(}",
           "eventNumber" => 47,
           "positionEventNumber" => 51,
           "streamId" => 'entries',
