@@ -29,15 +29,9 @@ module HttpEventstore
         expect(events[0].stream_name).to eq('entries')
       end
 
-      specify 'it recovers from JsonParse::Error if possible' do
+      specify 'it ignores JsonParse::Error' do
         events = service.call([malformed_entry])
-        expect(events.length).to eq 1
-        expect(events[0].type).to eq "entryCreated"
-        expect(events[0].data).to eq("a"=>"1(", "b"=>"11(")
-        expect(events[0].event_id).to eq "fbf4a1a1-b4a3-4dfe-a01f-6668634e16e4"
-        expect(events[0].id).to eq 47
-        expect(events[0].position).to eq 51
-        expect(events[0].stream_name).to eq('entries')
+        expect(events.length).to eq 0
       end
 
       private
