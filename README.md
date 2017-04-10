@@ -20,11 +20,13 @@ To communicate with ES you have to create instance of `HttpEventstore::Connectio
 
 ```ruby
 client = HttpEventstore::Connection.new do |config|
-   #default value is '127.0.0.1'
+   # default value is 'http'
+   config.scheme = 'https'
+   # default value is 'localhost'
    config.endpoint = 'your_endpoint'
-   #default value is 2113
+   # default value is 2113
    config.port = 'your_port'
-   #default value is 20 entries per page
+   # default value is 20 entries per page
    config.page_size = 'your_page_size'
 end
 ```

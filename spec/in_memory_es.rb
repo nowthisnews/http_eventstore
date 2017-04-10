@@ -2,9 +2,8 @@ require 'json'
 
 module HttpEventstore
   class InMemoryEs
-
-    def initialize(endpoint, port, page_size)
-      @endpoint = Endpoint.new(endpoint, port)
+    def initialize(scheme, endpoint, port, page_size)
+      @endpoint = Endpoint.new(scheme, endpoint, port)
       @page_size = page_size
       @event_store = {}
     end
@@ -71,7 +70,7 @@ module HttpEventstore
     end
 
     def endpoint
-      Endpoint.new('127.0.0.1', 2113)
+      Endpoint.new('http', '127.0.0.1', 2113)
     end
 
     private

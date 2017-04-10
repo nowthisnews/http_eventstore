@@ -2,11 +2,12 @@ require 'spec_helper'
 
 module HttpEventstore
   describe Connection do
+    SCHEME  = 'http'
     ENDPOINT  = 'localhost'
     PORT      = 2113
     PAGE_SIZE = 20
 
-    let(:client) { InMemoryEs.new(ENDPOINT, PORT, PAGE_SIZE) }
+    let(:client) { InMemoryEs.new(SCHEME, ENDPOINT, PORT, PAGE_SIZE) }
     let(:events) { prepare_events }
     let(:stream_name) { 'teststream' }
 
@@ -17,7 +18,7 @@ module HttpEventstore
         config.page_size  = PAGE_SIZE
         config.http_adapter = :net_http
       end
-      allow(Api::Client).to receive(:new).with(ENDPOINT, PORT, PAGE_SIZE, :net_http).and_return(client)
+      allow(Api::Client).to receive(:new).with(SCHEME, ENDPOINT, PORT, PAGE_SIZE, :net_http).and_return(client)
       client.reset!
     end
 

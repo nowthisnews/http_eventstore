@@ -1,16 +1,17 @@
 module HttpEventstore
   class Endpoint
-
-    def initialize(endpoint, port)
+    def initialize(scheme, endpoint, port)
+      @scheme = scheme
       @endpoint = endpoint
       @port = port
     end
 
     def url
-      "http://#{endpoint}:#{port.to_s}"
+      "#{scheme}://#{endpoint}:#{port}"
     end
 
     private
-    attr_reader :endpoint, :port
+
+    attr_reader :scheme, :endpoint, :port
   end
 end

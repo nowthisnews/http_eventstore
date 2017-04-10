@@ -4,7 +4,7 @@ module HttpEventstore
   module Api
     describe Client do
 
-      let(:client)      { Client.new('localhost', 2113, 20) }
+      let(:client)      { Client.new('http', 'localhost', 2113, 20) }
       let(:stream_name) { 'streamname' }
 
       specify '#append_to_stream' do

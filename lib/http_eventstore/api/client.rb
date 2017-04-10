@@ -1,8 +1,8 @@
 module HttpEventstore
   module Api
     class Client
-      def initialize(endpoint, port, page_size, http_adapter = nil)
-        @endpoint = Endpoint.new(endpoint, port)
+      def initialize(scheme, endpoint, port, page_size, http_adapter = nil)
+        @endpoint = Endpoint.new(scheme, endpoint, port)
         @page_size = page_size
         @http_adapter = http_adapter
       end

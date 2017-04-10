@@ -1,8 +1,5 @@
 project_name: http_eventstore
 change:
-  version: minor
+  version: patch
   desc: |
-    * Add hurtle file
-    * Add gem version file
-    * Add http adapter option to specify http client which will be used to send requests to eventstore
-    - the default Net::Http lib have some problems in docker env.
+    Add support for HTTPS endpoints.
