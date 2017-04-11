@@ -1,3 +1,7 @@
+### 0.2.1 2017-04-11
+Add support for HTTPS endpoints.
+
+
 ## 0.2.0 2016-11-23
 * Add hurtle file
 * Add gem version file
