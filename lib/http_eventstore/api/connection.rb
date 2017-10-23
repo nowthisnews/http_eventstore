@@ -16,10 +16,10 @@ module HttpEventstore
                 content_type: APP_JSON
             }
         ) do |builder|
-          builder.adapter(http_adapter || Faraday.default_adapter)
           builder.response :json, content_type: APP_JSON
           builder.response :mashify
           builder.use ErrorsHandler
+          builder.adapter(http_adapter || Faraday.default_adapter)
         end
       end
 
