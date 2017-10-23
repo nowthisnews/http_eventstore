@@ -1,3 +1,8 @@
+### 0.2.2 2017-10-23
+* Fix faraday warning
+* Add Jenkinsfile
+
+
 ### 0.2.1 2017-04-11
 Add support for HTTPS endpoints.
 
