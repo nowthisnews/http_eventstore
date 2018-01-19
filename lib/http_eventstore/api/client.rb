@@ -13,7 +13,7 @@ module HttpEventstore
         make_request(:post, "/streams/#{stream_name}", event.data, headers)
       end
 
-      def update_stream_metadata(stream_name, event_id:, data: {})
+      def update_stream_metadata(stream_name, event_id: SecureRandom.uuid, data: {})
         headers = { "Content-Type" => "application/json", "ES-EventId" => event_id }
         make_request(:post, "/streams/#{stream_name}/metadata", data, headers)
       end
