@@ -1,3 +1,7 @@
+### 0.2.3 2018-01-19
+* Add method to update stream metadata
+
+
 ### 0.2.2 2017-10-23
 * Fix faraday warning
 * Add Jenkinsfile
