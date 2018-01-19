@@ -15,6 +15,14 @@ module HttpEventstore
         client.append_to_stream(stream_name, event, 1)
       end
 
+      specify '#update_stream_metadata' do
+        data = { data: 1 }
+        event_id = 'fbf4a1a1-b4a3-4dfe-a01f-ec52c34e16e4'
+        expect(client).to receive(:make_request).with(:post, '/streams/streamname/metadata', data, { 'Content-Type' => 'application/json',
+                                                                                                     'ES-EventId' => event_id })
+        client.update_stream_metadata('streamname', event_id: event_id, data: data)
+      end
+
       specify '#append_events_to_stream' do
         event1 = HttpEventstore::Event.new('event-type', {data: 1})
         event2 = HttpEventstore::Event.new('event-type2', {data: 2})

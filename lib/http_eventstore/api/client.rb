@@ -13,6 +13,11 @@ module HttpEventstore
         make_request(:post, "/streams/#{stream_name}", event.data, headers)
       end
 
+      def update_stream_metadata(stream_name, event_id: SecureRandom.uuid, data: {})
+        headers = { "Content-Type" => "application/json", "ES-EventId" => event_id }
+        make_request(:post, "/streams/#{stream_name}/metadata", data, headers)
+      end
+
       def append_events_to_stream(stream_name, events=[], expected_version = nil)
         headers = {
           "Content-Type" => "application/vnd.eventstore.events+json",
