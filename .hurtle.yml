@@ -2,5 +2,4 @@ project_name: http_eventstore
 change:
   version: patch
   desc: |
-    * Fix faraday warning
-    * Add Jenkinsfile
+    * Add method to update stream metadata

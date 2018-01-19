@@ -7,6 +7,10 @@ module HttpEventstore
       yield(self) if block_given?
     end
 
+    def update_stream_metadata(*args)
+      client.update_stream_metadata(*args)
+    end
+
     def append_to_stream(stream_name, event_data, expected_version = nil)
       Actions::AppendEventToStream.new(client).call(stream_name, event_data, expected_version)
     end
